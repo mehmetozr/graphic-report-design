@@ -1,0 +1,617 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Graphic Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+
+    <style>
+        :root {
+            --orange-mi: #f78b16;
+            --green-mi: #05b763;
+            --yellow-mi: #f6be18;
+            --red-mi: #f86356;
+            --blue-mi: #0cabc9;
+            --purple-mi: #7f6ed3;
+            --purple: #716aca;
+            --gray-mi: #f1f1f1;
+            --gray-mi: #c2c2c2;
+            --dark-gray: #616a7b;
+            --dark-gray-mi: #60697b;
+            --back-gray: #f5f8fb;
+            --top-gray: #e4eaf2;
+            --border-light: #e4e7eb;
+            --border-light: #eaeff6;
+            --blue-dark-text: #122736;
+            --blue-dark-text: #242a3e;
+            --blue-dark-text: #60697b;
+            --green-light: #8bc34a;
+            --purple2: #5b6ec3;
+            --purple3: #6764ba;
+            --purple: #5d78ff;
+            --gray-choice-text: #6d737e;
+            --header-bg: #546e7a;
+            --aaa: #5d78ff;
+            --yellow-main: #ffb822;
+            --blue-main: #36a3f7;
+            --purple-main: #716aca;
+            /* --green-main: #34bfa3; */
+            --green-main: #8bc34a;
+            --red-main: #f4516c;
+            --false-capital: hsl(41, 100%, 57%);
+            --false-percent: hsl(41, 100%, 80%);
+            --false-choice: hsl(41, 100%, 87%);
+            --true-capital: hsl(88, 50%, 53%);
+            --true-percent: hsl(88, 50%, 80%);
+            --true-choice: hsl(88, 50%, 83%);
+        }
+
+    </style>
+
+
+    <style>
+        .graphic-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            overflow-y: auto;
+        }
+
+        .graphic-modal__content-container {
+            position: relative;
+            height: 500px;
+            width: 50%;
+            background-color: #313646;
+            top: calc(50% - 250px);
+            left: 25%;
+            border-radius: 18px;
+            /*            padding: 8px; box-sizing: border-box;background-color:#aabbcc*/
+        }
+
+        .graphic-modal__content {
+            height: 100%;
+            width: 100%;
+            background-color: #313646;
+            border-radius: 10px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .graphic-modal__content_header {
+            color: white;
+            font-size: 23px;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 10px
+        }
+
+        .graphic-modal__content_body {
+            height: 80%;
+            position: relative;
+        }
+
+        .graphic-modal__grade-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative
+        }
+
+        .graphic-modal__grade {
+            position: relative
+        }
+
+        .graphic-modal__grade_span {
+            width: 40px;
+            color: #fff;
+            position: absolute;
+        }
+
+        .graphic-modal__grade_line {
+            flex: 1;
+            height: 2px;
+            margin-left: 40px;
+            background-color: #7a808b;
+        }
+
+        .graphic-modal__bar-container {
+            position: absolute;
+            top: 0;
+            bottom: 0px;
+            left: 0px;
+            right: 0;
+            padding: 0 5px 0 45px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .graphic-modal__bar {
+            display: none;
+            min-height: 1%;
+            flex: 1;
+            margin: 0 5px;
+            position: relative;
+        }
+
+        .graphic-modal__bar_grade {
+            background-color: #eda71d;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px 5px 0 0;
+            box-shadow: inset 0 1px 6px 0 rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            color: black;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .graphic-modal__bar_text {
+            /*
+            background-color: black;
+            color: white;
+            position: absolute;
+            bottom: -30px
+*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            width: 100%;
+            height: 70px;
+            background-color: #00aff5;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .graphic-modal__general-average {
+            display: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 5px 0px 45px;
+            box-sizing: border-box;
+            align-items: flex-end;
+        }
+
+        .graphic-modal__general-average_text {
+            position: relative;
+            bottom: calc(54.2% - 2.5px);
+            background-color: #e53a48;
+            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.12);
+            height: 5px;
+            border-radius: 6.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+        }
+
+    </style>
+
+
+
+    <style>
+        .left-section__choice {
+            position: relative;
+            border-radius: 5px;
+            padding: 2px;
+        }
+
+        .selected-choice-by-user {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: absolute;
+            left: -45px;
+            ;
+        }
+
+        .selected-choice-by-user i {
+            font-size: 35px;
+            color: #36a3f7;
+        }
+
+        .selected-choice-by-user_lejant {
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .selected-choice-by-user_lejant i {
+            font-size: 35px;
+            color: #36a3f7;
+            ;
+        }
+
+        .selected-choice-by-user_lejant span {
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .mo_report-box__bar-title_bold {
+            font-weight: bold;
+            padding: 10px 10px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            flex: 4;
+            color: #5a6272;
+            font-size: 18px;
+        }
+
+        .mo_bg-success {
+            background-color: #34bfa3
+        }
+
+        .mo_bg-warning {
+            background-color: #ffb822;
+        }
+
+        .mo_bg-info {
+            background-color: #0cabc9;
+        }
+
+        .mo_bg-danger {
+            background-color: #f4516c
+        }
+
+        .mo_bg-primary {
+            background-color: #5d78ff
+        }
+
+        .mo_text-success {
+            color: #34bfa3
+        }
+
+        .mo_text-warning {
+            color: #ffb822;
+        }
+
+        .mo_text-info {
+            color: #0cabc9
+        }
+
+        .mo_text-danger {
+            color: #f4516c
+        }
+
+        .mo_text-primary {
+            color: #5d78ff
+        }
+
+        .graphic-modal__bar {
+            display: block;
+        }
+
+        .graphic-modal__general-average {
+            display: block;
+        }
+
+        .graphic-modal__lejant-container {
+            position: absolute;
+            top: -5px;
+        }
+
+        .graphic-modal__lejant__header {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .graphic-modal__lejant__body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .graphic-modal__lejant-dot {
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            background-color: #fff;
+            ;
+        }
+
+        .graphic-modal__lejant-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .graphic-modal__lejant-item_square {
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 15px;
+            width: 15px;
+            border-radius: 2px;
+        }
+
+        .graphic-modal__lejant-item_line {
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 3px;
+            width: 15px;
+            border-radius: 1px;
+            ;
+        }
+
+        .graphic-modal__lejant-text {
+            font-size: 14px;
+            color: #fff;
+        }
+
+    </style>
+
+
+
+    <style>
+        .graphic-modal__bar_grade {
+            align-items: flex-end;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .graphic-modal__bar_text {
+            position: absolute
+        }
+
+        .graphic-modal__bar_text>span {
+            transform: rotate(-90deg);
+            width: 75px;
+            font-size: 14px;
+        }
+
+        .first-color-green {
+            background-color: #227447;
+        }
+
+        .first-color-green_border {
+            border: 1px solid #227447
+        }
+
+        .mo_popover__button_warning {
+            background-color: var(--yellow-main);
+            border: 1px solid var(--yellow-main);
+        }
+
+        .mo_transfer_border_warning {
+            border: 1px solid var(--yellow-main);
+        }
+
+        .mo_popover__button_danger {
+            background-color: var(--red-main);
+            border: 1px solid var(--red-main);
+        }
+
+        .mo_transfer_border_danger {
+            border: 1px solid var(--red-main);
+        }
+
+        .mo_report__graphic-modal__general-average_text {
+            justify-content: center;
+            margin-left: 0px;
+        }
+
+    </style>
+
+
+
+</head>
+
+<body style="">
+
+    <div class="" id="region_based_container" style="width: 50%; font-family: 'Roboto'">
+
+
+        <div class="graphic-modal__content-container" style="height: 550px;left:0; width:100%; top:calc(50% - 275px);;">
+
+            <div class="graphic-modal__content" style="width: 98%; height:90% ;">
+
+
+                <div class="graphic-modal__content_header" style="height: 50px; margin-bottom: 50px; position:relative">
+                    <span>X Team</span><span style="margin-left: 6px;">Region Status</span>
+
+                    <div class="graphic-modal__lejant-container">
+                        <div class="graphic-modal__lejant__header">LEJANT</div>
+                        <div class="graphic-modal__lejant__body">
+
+                            <div class="graphic-modal__lejant-item ">
+                                <div class="graphic-modal__lejant-dot"> </div>
+                                <div class="graphic-modal__lejant-item_square mo_bg-warning"></div>
+                                <div class="graphic-modal__lejant-text">X Team Yellow Bar Rate</div>
+                            </div>
+
+                            <div class="graphic-modal__lejant-item ">
+                                <div class="graphic-modal__lejant-dot"> </div>
+                                <div class="graphic-modal__lejant-item_square mo_bg-danger"></div>
+                                <div class="graphic-modal__lejant-text"> X Team Red Bar Rate</div>
+                            </div>
+
+                            <div class="graphic-modal__lejant-item ">
+                                <div class="graphic-modal__lejant-dot"> </div>
+                                <div class="graphic-modal__lejant-item_line mo_bg-success"></div>
+                                <div class="graphic-modal__lejant-text">X Team Yellow Bar Avarage</div>
+                            </div>
+                            <div class="graphic-modal__lejant-item ">
+                                <div class="graphic-modal__lejant-dot"> </div>
+                                <div class="graphic-modal__lejant-item_line mo_bg-primary"></div>
+                                <div class="graphic-modal__lejant-text">X Team Red Bar Avarage</div>
+                            </div>
+
+
+
+                            <div>
+
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="graphic-modal__content_body">
+
+                    <div class="graphic-modal__grade-container">
+
+                        <div class="graphic-modal__grade vertical-center">
+                            <span class="graphic-modal__grade_span">100,0</span>
+                            <div class="graphic-modal__grade_line" style="background-color:#45484f"></div>
+                        </div>
+
+
+
+                        <div class="graphic-modal__grade vertical-center">
+                            <span class="graphic-modal__grade_span">80,0</span>
+                            <div class="graphic-modal__grade_line" style="background-color:#45484f"></div>
+                        </div>
+
+
+
+                        <div class="graphic-modal__grade vertical-center">
+                            <span class="graphic-modal__grade_span">60,0</span>
+                            <div class="graphic-modal__grade_line" style="background-color:#45484f"></div>
+                        </div>
+
+
+
+                        <div class="graphic-modal__grade vertical-center">
+                            <span class="graphic-modal__grade_span">40,0</span>
+                            <div class="graphic-modal__grade_line" style="background-color:#45484f"></div>
+                        </div>
+
+
+
+                        <div class="graphic-modal__grade vertical-center">
+                            <span class="graphic-modal__grade_span">20,0</span>
+                            <div class="graphic-modal__grade_line" style="background-color:#45484f"></div>
+                        </div>
+
+
+
+                        <div class="graphic-modal__grade vertical-center">
+                            <span class="graphic-modal__grade_span">00,0</span>
+                            <div class="graphic-modal__grade_line" style="background-color:#45484f"></div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="graphic-modal__bar-container">
+
+
+                        <div class="graphic-modal__bar" style="height: 100%; ">
+                            <div style="display: flex; height: 100%; width: 100%; align-items: flex-end;">
+
+                                <div class="graphic-modal__bar_grade" style="height:67.1%">67.1</div>
+                                <div class="graphic-modal__bar_grade" style="background-color:#f4516d; height: 84.1%;"> 84.1</div>
+                            </div>
+
+
+
+                            <div class="graphic-modal__bar_text"> <span>Region A </span></div>
+                        </div>
+
+                        <div class="graphic-modal__bar" style="height: 100%; ">
+                            <div style="display: flex; height: 100%; width: 100%; align-items: flex-end;">
+
+                                <div class="graphic-modal__bar_grade" style="height:77.3%">77.3</div>
+                                <div class="graphic-modal__bar_grade" style="background-color:#f4516d; height: 68.1%;"> 68.1</div>
+                            </div>
+                            <div class="graphic-modal__bar_text"> <span>Region B </span></div>
+                        </div>
+
+                        <div class="graphic-modal__bar" style="height: 100%; ">
+                            <div style="display: flex; height: 100%; width: 100%; align-items: flex-end;">
+
+                                <div class="graphic-modal__bar_grade" style="height:100%">100</div>
+                                <div class="graphic-modal__bar_grade" style="background-color:#f4516d; height: 98.3%;"> 98.3</div>
+                            </div>
+                            <div class="graphic-modal__bar_text"> <span>Region C </span></div>
+                        </div>
+
+                        <div class="graphic-modal__bar" style="height: 100%; ">
+                            <div style="display: flex; height: 100%; width: 100%; align-items: flex-end;">
+
+                                <div class="graphic-modal__bar_grade" style="height:45.5%">45.5</div>
+                                <div class="graphic-modal__bar_grade" style="background-color:#f4516d; height: 56.7%;"> 56.7</div>
+                            </div>
+                            <div class="graphic-modal__bar_text"> <span>Region D </span></div>
+                        </div>
+
+                        <div class="graphic-modal__bar" style="height: 100%; ">
+                            <div style="display: flex; height: 100%; width: 100%; align-items: flex-end;">
+
+                                <div class="graphic-modal__bar_grade" style="height:70%">70</div>
+                                <div class="graphic-modal__bar_grade" style="background-color:#f4516d; height: 79%;"> 79</div>
+                            </div>
+                            <div class="graphic-modal__bar_text"> <span>Region E </span></div>
+                        </div>
+
+                        <div class="graphic-modal__bar" style="height: 100%; ">
+                            <div style="display: flex; height: 100%; width: 100%; align-items: flex-end;">
+
+                                <div class="graphic-modal__bar_grade" style="height:89.9%">89.9</div>
+                                <div class="graphic-modal__bar_grade" style="background-color:#f4516d; height: 92.4%;"> 92.4</div>
+                            </div>
+                            <div class="graphic-modal__bar_text"> <span>Region F </span></div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="graphic-modal__general-average" style=" display: flex; ">
+                        <div class="graphic-modal__general-average_text" style="bottom:calc(54.2% - 1px); height: 2px; justify-content: flex-end; right:-30px; font-size: 16px;background-color:#5d78ff; ">10.2 </div>
+                    </div>
+                    <div class="graphic-modal__general-average" style=" display:flex; ">
+                        <div class="graphic-modal__general-average_text" style="bottom:calc(56.2% - 1px); height: 2px; justify-content: flex-end; right:-30px; font-size: 16px;; background-color:#34bfa3 ; justify-content: flex-start; left: -30px;">56.2 </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- graphic page end -->
+
+
+
+
+
+
+</body>
+
+</html>
